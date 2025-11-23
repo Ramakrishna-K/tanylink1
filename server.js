@@ -7,9 +7,14 @@ const linksRouter = require('./routes/links');
 const PORT = process.env.PORT || 4000;
 const app = express();
 
-app.use(cors());
+// app.use(cors());
+// app.use(express.json());
+app.use(cors({
+  origin: "https://tanylinkfrontend.vercel.app",  
+  methods: "GET,POST,PUT,DELETE",
+  credentials: true
+}));
 app.use(express.json());
-
 app.get('/healthz', (req, res) => {
   return res.json({ ok: true, version: "1.0" });
 });
